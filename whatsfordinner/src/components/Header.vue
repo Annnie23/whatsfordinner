@@ -1,7 +1,7 @@
 <template>
     <header>
       <nav>
-        <router-link to="/">Hjem</router-link>
+        <router-link to="/">Whats For Dinner?</router-link>
         <router-link to="/login">Login</router-link>
       </nav>
     </header>

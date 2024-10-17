@@ -1,11 +1,16 @@
 <template>
     <div>
-      <Header />
-      <h1>Log Ind</h1>
+    <Header />
+    <router-view />
+      <h1>Hello admin
+      </h1>
+        <br>     
+      <p>Login to access the admin dashboard</p>
+      <br>
       <form @submit.prevent="handleLogin">
         <input v-model="email" type="email" placeholder="Email" required />
-        <input v-model="password" type="password" placeholder="Adgangskode" required />
-        <button type="submit">Log Ind</button>
+        <input v-model="password" type="password" placeholder="Password" required />
+        <button type="submit">Login</button>
       </form>
       <p v-if="errorMessage">{{ errorMessage }}</p>
     </div>
@@ -15,6 +20,7 @@
   import { ref } from 'vue';
   import { login } from '../firebase/auth'; // Importer login-funktionen
   import { useRouter } from 'vue-router'; // Importer useRouter
+  import Header from '../components/Header.vue'; // Importer Header-komponenten
   
   const router = useRouter(); // Opret router instans
   

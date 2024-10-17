@@ -8,6 +8,7 @@ import AdminDashboard from '../views/AdminDashboard.vue'; // Importér AdminDash
 const routes = [
   { path: '/', name: 'Home', component: Home }, // Rute til forsiden
   { path: '/login', name: 'Login', component: Login }, // Rute til login-siden
+  { path: '/header', name: 'Header', component: Header }, // Rute til header-komponenten
   { path: '/admin', component: AdminDashboard }, // Tilføj denne rute
 
 ];
