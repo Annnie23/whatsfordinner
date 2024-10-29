@@ -5,12 +5,12 @@ import { getFirestore } from 'firebase/firestore';
 
 // Din Firebase-konfiguration
 const firebaseConfig = {
-    apiKey: "AIzaSyBW2wNjbtnHZ_BNh76fRoQIScbGj9cUkzA",
-    authDomain: "whatsfordinner-de2e1.firebaseapp.com",
-    projectId: "whatsfordinner-de2e1",
-    storageBucket: "whatsfordinner-de2e1.appspot.com",
-    messagingSenderId: "908882326022",
-    appId: "1:908882326022:web:ee01060cc9b2128ad90987"
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 // Initialiser Firebase

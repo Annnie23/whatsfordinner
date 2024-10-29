@@ -13,6 +13,8 @@
 </template>
 
 <script setup>
+/** import + destructuring */
+
 import Header from '../components/Header.vue'; // Importerer Header-komponenten
 import { ref, onMounted } from 'vue'; // onMounted for at hente data, når komponenten loades
 import { db } from '../firebase/firebase'; // Importer din Firestore database instans
