@@ -1,16 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
-import Login from '../views/Login.vue'; // Importer login-komponenten
+import Login from '../views/Login.vue';
 import Header from '../components/Header.vue';
-import AdminDashboard from '../views/AdminDashboard.vue'; // Importér AdminDashboard
-
+import AdminDashboard from '../views/AdminDashboard.vue';
 
 const routes = [
-  { path: '/', name: 'Home', component: Home }, // Rute til forsiden
-  { path: '/login', name: 'Login', component: Login }, // Rute til login-siden
-  { path: '/header', name: 'Header', component: Header }, // Rute til header-komponenten
-  { path: '/admin', component: AdminDashboard }, // Tilføj denne rute
-
+  { path: '/', name: 'Home', component: Home },
+  { path: '/login', name: 'Login', component: Login },
+  { path: '/header', name: 'Header', component: Header },
+  { path: '/admin', component: AdminDashboard },
 ];
 
 const router = createRouter({
@@ -20,11 +18,11 @@ const router = createRouter({
 
 // Adgangskontrol for admin-siden
 router.beforeEach((to, from, next) => {
-    const isAuthenticated = !!localStorage.getItem('authToken'); // Antager, at du gemmer et token i localStorage
+    const isAuthenticated = !!localStorage.getItem('authToken');
     if (to.path === '/admin' && !isAuthenticated) {
-      next('/login'); // Omdiriger til login, hvis ikke logget ind
+      next('/login');
     } else {
-      next(); // Fortsæt til den ønskede rute
+      next();
     }
   });
 

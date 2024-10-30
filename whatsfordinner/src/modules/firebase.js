@@ -1,9 +1,7 @@
-// src/firebase/firebase.js
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth'; // Importer getAuth fra Firebase Auth
+import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
-// Din Firebase-konfiguration
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
     authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -13,10 +11,8 @@ const firebaseConfig = {
     appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
-// Initialiser Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app); // Initialiser auth
-const db = getFirestore(app); // Initialiser Firestore
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-// Eksporter app, auth og db
 export { app, auth, db };

@@ -1,38 +1,80 @@
 <template>
-    <header>
-      <nav>
-        <router-link to="/">Whats For Dinner?</router-link>
-        <router-link to="/login">Login</router-link>
-      </nav>
-    </header>
-  </template>
+  <header>
+    <nav>
+      <router-link to="/">Whats For Dinner?</router-link>
+      <router-link to="/login" v-if="!isLoggedIn"></router-link>
+      <router-link to="/admin" v-if="isLoggedIn">Admin</router-link>
+      <div class="auth-button">
+        <button @click="toggleAuth">{{ isLoggedIn ? 'Logout' : 'Login' }}</button>
+      </div>
+    </nav>
+  </header>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue';
+import { useUsers } from '../modules/useUsers';
+import { useRouter } from 'vue-router';
+
+const { user, logout } = useUsers();
+const router = useRouter();
+
+const isLoggedIn = computed(() => !!user.value);
+
+const toggleAuth = () => {
+  if (isLoggedIn.value) {
+    logout();
+    router.push('/');
+  } else {
+    router.push('/login');
+  }
+};
+</script>
   
-  <script setup>
-  </script>
-  
-  <style scoped>
-  /* Header Styles */
+<style scoped>
 header {
-  position: fixed; /* Får headeren til at forblive øverst */
-  top: 0; /* Sætter headeren til at være helt i toppen */
-  left: 0; /* Sørger for, at headeren strækker sig ud til venstre */
-  right: 0; /* Sørger for, at headeren strækker sig ud til højre */
-  padding: 10px 20px; /* Indvendig margen */
-  background-color: #007BFF; /* Blå farve */
-  color: white;
-  z-index: 1000; /* Sikrer, at headeren er oven på andre elementer */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 20px;
+  background-color: #F9F8F2;
+  color: #2E4B2A;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+header nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
 header nav a {
-  margin: 0 10px;
-  color: white;
+  margin: 10px 10px;
+  color: #2E4B2A;
   text-decoration: none;
   font-weight: bold;
 }
 
 header nav a:hover {
-  color: #FFCC00; /* Gult ved hover */
+  color: #FFCC00;
 }
 
-  </style>
-  
+.auth-button {
+  margin-left: auto;
+  background-color: #FFA500;
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.auth-button:hover {
+  background-color: #FFD700;
+}
+</style>
