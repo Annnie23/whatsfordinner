@@ -13,11 +13,9 @@
 </template>
 
 <script setup>
-/** import + destructuring */
-
 import Header from '../components/Header.vue'; // Importerer Header-komponenten
 import { ref, onMounted } from 'vue'; // onMounted for at hente data, når komponenten loades
-import { db } from '../firebase/firebase'; // Importer din Firestore database instans
+import { db } from '../modules/firebase'; // Importer din Firestore database instans
 import { collection, getDocs } from 'firebase/firestore'; // Importer Firestore metoder
 
 const recipes = ref([]); // Liste til opskrifterne fra databasen
@@ -26,21 +24,19 @@ const recipe = ref(null); // Den opskrift, der vises, når brugeren trykker på 
 // Funktion til at hente opskrifter fra Firestore
 const fetchRecipes = async () => {
   const querySnapshot = await getDocs(collection(db, 'recipes')); // Hent alle dokumenter fra 'recipes' samlingen
-  querySnapshot.forEach((doc) => {
-    recipes.value.push({ ...doc.data() }); // Tilføj opskrifterne til recipes listen
-  });
+  recipes.value = querySnapshot.docs.map(doc => doc.data()); // Tilføj opskrifterne til recipes listen
 };
 
 // Funktion til at få en tilfældig opskrift
 const getRandomRecipe = () => {
   if (recipes.value.length > 0) {
     const randomIndex = Math.floor(Math.random() * recipes.value.length);
-    recipe.value = recipes.value[randomIndex]; // Vis tilfældig opskrift
+    recipe.value = recipes.value[randomIndex];
+  } else {
+    alert('No recipes available.');
   }
 };
 
 // Hent opskrifter, når komponenten loades
-onMounted(() => {
-  fetchRecipes();
-});
+onMounted(fetchRecipes);
 </script>

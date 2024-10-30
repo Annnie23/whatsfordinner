@@ -18,12 +18,13 @@
   
   <script setup>
   import { ref } from 'vue';
-  import { login } from '../firebase/auth'; // Importer login-funktionen
-  import { useRouter } from 'vue-router'; // Importer useRouter
-  import Header from '../components/Header.vue'; // Importer Header-komponenten
+  import { authUse } from '../modules/useUsers'; // Importer authUse
+  import { useRouter } from 'vue-router';
+  import Header from '../components/Header.vue';
   
-  const router = useRouter(); // Opret router instans
+  const { login } = authUse(); // Træk login-funktionen ud af authUse
   
+  const router = useRouter();
   const email = ref('');
   const password = ref('');
   const errorMessage = ref('');
@@ -31,14 +32,17 @@
   const handleLogin = async () => {
     try {
       await login(email.value, password.value);
-      router.push('/admin'); // Naviger til admin-dashboardet efter login
+      router.push('/admin');
     } catch (error) {
-      errorMessage.value = error.message; // Sæt fejlmeddelelse
+      errorMessage.value = error.message;
     }
   };
   </script>
+  
   
   <style scoped>
   /* Dine stilarter her */
   </style>
   
+
+   
