@@ -49,7 +49,7 @@
   import { ref, onMounted } from 'vue';
   import Header from '../components/Header.vue'; // Importer Header-komponenten
   import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, setDoc } from 'firebase/firestore'; // Importer setDoc
-  import { db } from '../firebase/firebase'; // Importer Firestore-databasen
+  import { db } from '../modules/firebase'; // Importer Firestore-databasen
 
   // Reaktive variabler
   const recipes = ref([]);
