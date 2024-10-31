@@ -16,14 +16,5 @@ const router = createRouter({
   routes,
 });
 
-// Adgangskontrol for admin-siden
-router.beforeEach((to, from, next) => {
-    const isAuthenticated = !!localStorage.getItem('authToken');
-    if (to.path === '/admin' && !isAuthenticated) {
-      next('/login');
-    } else {
-      next();
-    }
-  });
 
 export default router;

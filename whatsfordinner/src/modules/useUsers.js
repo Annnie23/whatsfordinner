@@ -10,6 +10,7 @@ export const useUsers = () => {
   const login = async (email, password) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      console.log('Logged in!');
     } catch (error) {
       console.log(error.message);
     }
